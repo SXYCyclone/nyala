@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Wallo\FilamentCompanies\HasProfilePhoto;
@@ -17,7 +18,7 @@ use Wallo\FilamentCompanies\FilamentCompanies;
 use Wallo\FilamentCompanies\HasConnectedAccounts;
 use Wallo\FilamentCompanies\SetsProfilePhotoFromUrl;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar
+class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -30,6 +31,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     use SetsProfilePhotoFromUrl;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use Impersonate;
+    use \Illuminate\Auth\MustVerifyEmail;
 
     public function canAccessFilament(): bool
     {
@@ -94,5 +97,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         }
 
         return $this->getPhotoUrl();
+    }
+
+    public function canBeImpersonated(): bool
+    {
+        return $this->can('impersonate');
     }
 }
