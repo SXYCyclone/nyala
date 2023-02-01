@@ -9,7 +9,6 @@
         "andrewdwallo/filament-companies": "^1.1",
         "filament/filament": "^2.16",
         "guzzlehttp/guzzle": "^7.2",
-        "lara-zeus/sky": "^2.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
