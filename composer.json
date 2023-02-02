@@ -12,7 +12,6 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "phpsa/filament-authentication": "^2.3",
         "pxlrbt/filament-environment-indicator": "^1.0",
         "shuvroroy/filament-spatie-laravel-health": "^1.6"
     },
