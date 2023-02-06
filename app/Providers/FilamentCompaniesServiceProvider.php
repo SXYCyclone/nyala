@@ -48,29 +48,44 @@ class FilamentCompaniesServiceProvider extends ServiceProvider
         if (FilamentCompanies::hasCompanyFeatures()) {
             Filament::registerRenderHook(
                 'global-search.start',
-                fn (): View => view('filament-companies::components.dropdown.navigation-menu'),
+                fn(): View => view('filament-companies::components.dropdown.navigation-menu'),
             );
         }
 
         Filament::serving(function () {
             Filament::registerUserMenuItems([
                 'account' => UserMenuItem::make()->url(Profile::getUrl()),
-                // ...
             ]);
+
+            if (Filament::currentContext() === 'filament') {
+                Filament::registerUserMenuItems([
+                    'switch-to-admin' => UserMenuItem::make()
+                        ->label('Switch to Admin')
+                        ->icon('heroicon-s-chevron-double-up')
+                        ->url('/' . config('filament-admin.path')),
+                ]);
+            } else {
+                Filament::registerUserMenuItems([
+                    'switch-to-company' => UserMenuItem::make()
+                        ->label('Switch to company')
+                        ->icon('heroicon-s-chevron-double-down')
+                        ->url('/' . config('filament.path')),
+                ]);
+            }
         });
 
         if (FilamentCompanies::hasApiFeatures()) {
             Filament::serving(function () {
                 Filament::registerUserMenuItems([
                     UserMenuItem::make()
-                    ->label('API Tokens')
-                    ->icon('heroicon-s-lock-open')
-                    ->url(APITokens::getUrl()),
+                        ->label('API Tokens')
+                        ->icon('heroicon-s-lock-open')
+                        ->url(APITokens::getUrl()),
                 ]);
             });
         }
 
-        Filament::serving(function() {
+        Filament::serving(function () {
             Filament::registerUserMenuItems([
                 'logout' => UserMenuItem::make()->url(route('logout')),
             ]);
@@ -93,7 +108,7 @@ class FilamentCompaniesServiceProvider extends ServiceProvider
 
         Filament::registerRenderHook(
             'content.start',
-            fn (): string => Blade::render('<x-filament-companies::banner />'),
+            fn(): string => Blade::render('<x-filament-companies::banner />'),
         );
 
         $this->configurePermissions();
