@@ -198,6 +198,7 @@ return [
         App\Providers\FilamentCompaniesServiceProvider::class,
         \App\Providers\HealthServiceProvider::class,
         \App\Providers\FilamentAdminServiceProvider::class,
+        \App\Providers\FilamentNavigationServiceProvider::class,
 
     ],
 
