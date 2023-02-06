@@ -197,6 +197,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\FilamentCompaniesServiceProvider::class,
         \App\Providers\HealthServiceProvider::class,
+        \App\Providers\FilamentAdminServiceProvider::class,
 
     ],
 
