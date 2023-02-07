@@ -14,6 +14,7 @@ use Wallo\FilamentCompanies\HasCompanies;
 use Laravel\Sanctum\HasApiTokens;
 use Wallo\FilamentCompanies\FilamentCompanies;
 use Wallo\FilamentCompanies\HasConnectedAccounts;
+use Wallo\FilamentCompanies\Role;
 use Wallo\FilamentCompanies\SetsProfilePhotoFromUrl;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
@@ -103,6 +104,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     public function hasCurrentCompanyRole(string $role): bool
     {
         return $this->hasCompanyRole($this->currentCompany, $role);
+    }
+
+    public function getCurrentCompanyRoleAttribute(): ?Role
+    {
+        return $this->companyRole($this->currentCompany);
     }
 
     public function canManageResource(string $resource, $company = null): bool

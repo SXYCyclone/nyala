@@ -2,6 +2,7 @@
 
 namespace App\Actions\FilamentCompanies;
 
+use App\Helpers\RoleHelper;
 use App\Models\Company;
 use App\Models\User;
 use Closure;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Wallo\FilamentCompanies\Contracts\InvitesCompanyEmployees;
 use Wallo\FilamentCompanies\Events\InvitingCompanyEmployee;
 use Wallo\FilamentCompanies\FilamentCompanies;
@@ -47,9 +49,11 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
             'role' => $role,
         ], $this->rules($company), [
             'email.unique' => __('This employee has already been invited to the company.'),
-        ])->after(
-            $this->ensureUserIsNotAlreadyOnCompany($company, $email)
-        )->validateWithBag('addCompanyEmployee');
+        ])
+            ->after($this->ensurePersonalCompanyInvitesIsEnabled($company))
+            ->after($this->ensureUserIsNotAlreadyOnCompany($company, $email))
+            ->after($this->ensureUserCanInviteRole($company, $role))
+            ->validateWithBag('addCompanyEmployee');
     }
 
     /**
@@ -67,8 +71,8 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
                 }),
             ],
             'role' => FilamentCompanies::hasRoles()
-                            ? ['required', 'string', new Role]
-                            : null,
+                ? ['required', 'string', new Role]
+                : null,
         ]);
     }
 
@@ -82,6 +86,31 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
                 $company->hasUserWithEmail($email),
                 'email',
                 __('This employee already belongs to the team.')
+            );
+        };
+    }
+
+    /**
+     * Ensure that personal company invites are enabled.
+     */
+    protected function ensurePersonalCompanyInvitesIsEnabled(Company $company): Closure
+    {
+        return function ($validator) use ($company) {
+            $validator->errors()->addIf(
+                $company->personal_company && !config('nyala.company.allow_personal_company_invites'),
+                'email',
+                __('Personal companies is not allowed to invite employees. Please create a new company.')
+            );
+        };
+    }
+
+    protected function ensureUserCanInviteRole(Company $company, string $role): Closure
+    {
+        return function ($validator) use ($company, $role) {
+            $validator->errors()->addIf(
+                RoleHelper::compareRoleLevel($role, auth()->user()->current_company_role) < 0,
+                'email',
+                __('You are only allowed to invite employees with a lower role than your current role.')
             );
         };
     }
