@@ -22,7 +22,7 @@ class CreateCompany implements CreatesCompanies
         Gate::forUser($user)->authorize('create', FilamentCompanies::newCompanyModel());
 
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:companies'],
         ])->validateWithBag('createCompany');
 
         AddingCompany::dispatch($user);
