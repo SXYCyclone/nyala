@@ -6,16 +6,16 @@ trait CompanyScoped
 {
     protected static function bootCompanyScoped()
     {
-        if (auth()->check() && auth()->user()->currentCompany) {
-            static::addGlobalScope('company', function ($builder) {
-                $builder->where('company_id', auth()->user()->currentCompany->id);
-            });
+        static::addGlobalScope('company', function ($builder) {
+            if ($c = auth()->user()->currentCompany) {
+                $builder->where('company_id', $c->id);
+            }
+        });
 
-            static::creating(function ($model) {
-                if (!isset($model->company_id)) {
-                    $model->company_id = auth()->user()->currentCompany->id;
-                }
-            });
-        }
+        static::creating(function ($model) {
+            if (!isset($model->company_id) && ($c = auth()->user()->currentCompany)) {
+                $model->company_id = $c->id;
+            }
+        });
     }
 }
