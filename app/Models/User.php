@@ -94,4 +94,23 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 
         return $this->getPhotoUrl();
     }
+
+    public function hasCurrentCompanyPermission(string $permission): bool
+    {
+        return $this->hasCompanyPermission($this->currentCompany, $permission);
+    }
+
+    public function hasCurrentCompanyRole(string $role): bool
+    {
+        return $this->hasCompanyRole($this->currentCompany, $role);
+    }
+
+    public function canManageResource(string $resource, $company = null): bool
+    {
+        if (is_null($company)) {
+            $company = $this->currentCompany;
+        }
+
+        return $this->hasCompanyPermission($company, "$resource:manage");
+    }
 }
