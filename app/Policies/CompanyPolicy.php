@@ -43,7 +43,7 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company): bool
     {
-        return $user->ownsCompany($company);
+        return $user->canManageResource('company', $company);
     }
 
     /**
@@ -52,7 +52,7 @@ class CompanyPolicy
      */
     public function addCompanyEmployee(User $user, Company $company): bool
     {
-        return $user->ownsCompany($company);
+        return $user->canManageResource('employee', $company);
     }
 
     /**
@@ -61,7 +61,7 @@ class CompanyPolicy
      */
     public function updateCompanyEmployee(User $user, Company $company): bool
     {
-        return $user->ownsCompany($company);
+        return $user->canManageResource('employee', $company);
     }
 
     /**
@@ -70,7 +70,7 @@ class CompanyPolicy
      */
     public function removeCompanyEmployee(User $user, Company $company): bool
     {
-        return $user->ownsCompany($company);
+        return $user->canManageResource('employee', $company);
     }
 
     /**

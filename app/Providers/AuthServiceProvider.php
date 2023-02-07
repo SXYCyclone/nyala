@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Company;
 use App\Models\ConnectedAccount;
+use App\Models\Navigation;
 use App\Policies\CompanyPolicy;
 use App\Policies\ConnectedAccountPolicy;
+use App\Policies\NavigationPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Company::class => CompanyPolicy::class,
         ConnectedAccount::class => ConnectedAccountPolicy::class,
+        Navigation::class => NavigationPolicy::class,
     ];
 
     /**
