@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Wallo\FilamentCompanies\Events\CompanyCreated;
 use Wallo\FilamentCompanies\Events\CompanyDeleted;
 use Wallo\FilamentCompanies\Events\CompanyUpdated;
@@ -41,4 +42,9 @@ class Company extends FilamentCompaniesCompany
         'updated' => CompanyUpdated::class,
         'deleted' => CompanyDeleted::class,
     ];
+
+    public function roles(): HasMany
+    {
+        return $this->hasMany(Role::class);
+    }
 }

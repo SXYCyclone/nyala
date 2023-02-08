@@ -42,5 +42,10 @@ return [
                 'permissions' => [],
             ],
         ],
+
+        'initial' => [
+            'admin',
+            'viewer',
+        ],
     ],
 ];
