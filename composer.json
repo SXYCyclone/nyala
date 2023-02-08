@@ -21,6 +21,7 @@
         "pxlrbt/filament-environment-indicator": "^1.0",
         "ryangjchandler/filament-navigation": "^0.4.2",
         "shuvroroy/filament-spatie-laravel-health": "^1.6",
+        "spatie/eloquent-sortable": "^4.0",
         "z3d0x/filament-logger": "^0.4.2"
     },
     "require-dev": {

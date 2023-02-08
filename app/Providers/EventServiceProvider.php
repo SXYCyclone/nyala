@@ -20,6 +20,12 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $observers = [
+        \App\Models\Role::class => [
+            \App\Observers\RoleObserver::class,
+        ],
+    ];
+
     /**
      * Register any events for your application.
      *
