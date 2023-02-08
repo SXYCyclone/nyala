@@ -56,6 +56,11 @@ class RoleResource extends Resource
                 Forms\Components\TextInput::make('description')
                     ->nullable()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('level')
+                    ->required()
+                    ->integer()
+                    ->minValue(0)
+                    ->maxValue(100),
                 Forms\Components\CheckboxList::make('permissions')
                     ->options(
                         collect(config('nyala.role.permissions'))
@@ -70,6 +75,7 @@ class RoleResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('level'),
                 Tables\Columns\TextColumn::make('key'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('description'),
@@ -84,7 +90,8 @@ class RoleResource extends Resource
             ->bulkActions([
                 //
             ])
-            ->reorderable('level');
+            ->reorderable('level')
+            ->defaultSort('level');
     }
 
     public static function getRelations(): array

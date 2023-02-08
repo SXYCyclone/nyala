@@ -15,6 +15,7 @@ use App\Actions\FilamentCompanies\ResolveSocialiteUser;
 use App\Actions\FilamentCompanies\SetUserPassword;
 use App\Actions\FilamentCompanies\UpdateCompanyName;
 use App\Actions\FilamentCompanies\UpdateConnectedAccount;
+use App\Models\Role;
 use Illuminate\Support\ServiceProvider;
 use Wallo\FilamentCompanies\FilamentCompanies;
 use Filament\Facades\Filament;
@@ -138,16 +139,9 @@ class FilamentCompaniesServiceProvider extends ServiceProvider
     {
         FilamentCompanies::defaultApiTokenPermissions(['read']);
 
-        FilamentCompanies::role('admin', 'Administrator', [
-            'navigation:manage',
-            'company:manage',
-            'employee:manage',
-        ])->description('Administrator users can perform any action.');
-
-        FilamentCompanies::role('editor', 'Editor', [
-            'read',
-            'create',
-            'update',
-        ])->description('Editor users have the ability to read, create, and update.');
+        foreach (Role::all() as $role) {
+            FilamentCompanies::role($role->key, $role->name, $role->permissions)
+                ->description($role->description ?? '');
+        }
     }
 }
