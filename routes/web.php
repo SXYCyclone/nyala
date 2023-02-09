@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,7 @@ Route::get('/', function () {
 Route::middleware([
     'auth:sanctum',
     config('filament-companies.auth_session'),
-    'verified'
+    'verified',
 ]);
+
+Route::personalDataExports('personal-data-exports');

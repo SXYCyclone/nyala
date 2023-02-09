@@ -8,7 +8,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Spatie\PersonalDataExport\ExportsPersonalData;
+use Spatie\PersonalDataExport\PersonalDataSelection;
 use Wallo\FilamentCompanies\HasProfilePhoto;
 use Wallo\FilamentCompanies\HasCompanies;
 use Laravel\Sanctum\HasApiTokens;
@@ -17,7 +20,7 @@ use Wallo\FilamentCompanies\HasConnectedAccounts;
 use Wallo\FilamentCompanies\Role;
 use Wallo\FilamentCompanies\SetsProfilePhotoFromUrl;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerifyEmail, ExportsPersonalData
 {
     use HasApiTokens;
     use HasFactory;
@@ -118,5 +121,17 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
         }
 
         return $this->hasCompanyPermission($company, "$resource:manage");
+    }
+
+    public function selectPersonalData(PersonalDataSelection $personalDataSelection): void
+    {
+        $personalDataSelection
+            ->add('user.json', $this->toArray());
+    }
+
+    public function personalDataExportName(): string
+    {
+        $userName = Str::slug($this->name);
+        return "personal-data-{$this->id}-{$userName}-{$this->email}.zip";
     }
 }

@@ -22,6 +22,7 @@
         "ryangjchandler/filament-navigation": "^0.4.2",
         "shuvroroy/filament-spatie-laravel-health": "^1.6",
         "spatie/eloquent-sortable": "^4.0",
+        "spatie/laravel-personal-data-export": "^4.2",
         "z3d0x/filament-logger": "^0.4.2"
     },
     "require-dev": {
