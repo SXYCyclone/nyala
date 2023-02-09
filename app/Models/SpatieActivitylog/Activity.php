@@ -3,6 +3,7 @@
 namespace Spatie\Activitylog\Models;
 
 use App\Models\BaseModel;
+use App\Models\BelongsToCompany;
 use App\Models\CompanyScoped;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +44,7 @@ use Spatie\Activitylog\Contracts\Activity as ActivityContract;
 class Activity extends BaseModel implements ActivityContract
 {
     use CompanyScoped;
+    use BelongsToCompany;
 
     public $guarded = [];
 
