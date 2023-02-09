@@ -30,7 +30,7 @@ class HealthServiceProvider extends ServiceProvider
     {
         Health::checks([
             DatabaseCheck::new(),
-            DebugModeCheck::new(),
+            DebugModeCheck::new()->if(app()->environment('production')),
             EnvironmentCheck::new(),
             UsedDiskSpaceCheck::new(),
         ]);
