@@ -15,6 +15,7 @@ use App\Actions\FilamentCompanies\ResolveSocialiteUser;
 use App\Actions\FilamentCompanies\SetUserPassword;
 use App\Actions\FilamentCompanies\UpdateCompanyName;
 use App\Actions\FilamentCompanies\UpdateConnectedAccount;
+use App\Filament\Pages\User\Profile;
 use App\Models\Role;
 use Illuminate\Support\ServiceProvider;
 use Wallo\FilamentCompanies\FilamentCompanies;
@@ -25,7 +26,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Blade;
 use Wallo\FilamentCompanies\Actions\GenerateRedirectForProvider;
 use Wallo\FilamentCompanies\Pages\User\APITokens;
-use Wallo\FilamentCompanies\Pages\User\Profile;
 use Wallo\FilamentCompanies\Socialite;
 
 class FilamentCompaniesServiceProvider extends ServiceProvider
