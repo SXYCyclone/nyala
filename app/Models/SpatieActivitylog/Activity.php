@@ -42,6 +42,8 @@ use Spatie\Activitylog\Contracts\Activity as ActivityContract;
  */
 class Activity extends BaseModel implements ActivityContract
 {
+    use CompanyScoped;
+
     public $guarded = [];
 
     protected $casts = [
