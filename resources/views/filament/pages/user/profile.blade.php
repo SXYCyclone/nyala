@@ -8,7 +8,7 @@
         <x-filament-companies::section-border/>
     @endif
 
-    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()) && !is_null($user->password))
+    @if (!is_null($user->password) && Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
         <div class="mt-10 sm:mt-0">
             @livewire(\Wallo\FilamentCompanies\Http\Livewire\UpdatePasswordForm::class)
         </div>
@@ -22,7 +22,7 @@
         <x-filament-companies::section-border/>
     @endif
 
-    @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication() && !is_null($user->password))
+    @if (!is_null($user->password) && Laravel\Fortify\Features::canManageTwoFactorAuthentication())
         <div class="mt-10 sm:mt-0">
             @livewire(\Wallo\FilamentCompanies\Http\Livewire\TwoFactorAuthenticationForm::class)
         </div>
@@ -34,25 +34,25 @@
         <div class="mt-10 sm:mt-0">
             @livewire(\Wallo\FilamentCompanies\Http\Livewire\ConnectedAccountsForm::class)
         </div>
+
+        <x-filament-companies::section-border/>
     @endif
 
     @if (!is_null($user->password))
-        <x-filament-companies::section-border/>
-
         <div class="mt-10 sm:mt-0">
             @livewire(\Wallo\FilamentCompanies\Http\Livewire\LogoutOtherBrowserSessionsForm::class)
         </div>
-    @endif
 
-    <x-filament-companies::section-border/>
+        <x-filament-companies::section-border/>
+    @endif
 
     <div class="mt-10 sm:mt-0">
         @livewire(\App\Http\Livewire\ExportPersonalDataForm::class)
     </div>
 
-    @if (Wallo\FilamentCompanies\FilamentCompanies::hasAccountDeletionFeatures())
-        <x-filament-companies::section-border/>
+    <x-filament-companies::section-border/>
 
+    @if (!is_null($user->password) && Wallo\FilamentCompanies\FilamentCompanies::hasAccountDeletionFeatures())
         <div class="mt-10 sm:mt-0">
             @livewire(\Wallo\FilamentCompanies\Http\Livewire\DeleteUserForm::class)
         </div>

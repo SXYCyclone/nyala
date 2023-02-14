@@ -16,6 +16,7 @@ use Wallo\FilamentCompanies\Contracts\InvitesCompanyEmployees;
 use Wallo\FilamentCompanies\Events\InvitingCompanyEmployee;
 use Wallo\FilamentCompanies\FilamentCompanies;
 use Wallo\FilamentCompanies\Mail\CompanyInvitation;
+use Wallo\FilamentCompanies\OwnerRole;
 use Wallo\FilamentCompanies\Rules\Role;
 
 class InviteCompanyEmployee implements InvitesCompanyEmployees
@@ -107,6 +108,9 @@ class InviteCompanyEmployee implements InvitesCompanyEmployees
     protected function ensureUserCanInviteRole(Company $company, string $role): Closure
     {
         return function ($validator) use ($company, $role) {
+            if (auth()->user()->current_company_role instanceof OwnerRole) {
+                return;
+            }
             $validator->errors()->addIf(
                 RoleHelper::compareRoleLevel($role, auth()->user()->current_company_role) < 0,
                 'email',
