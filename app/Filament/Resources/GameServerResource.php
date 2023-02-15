@@ -6,6 +6,7 @@ use App\Enums\GameServerProtocol;
 use App\Enums\GameServerType;
 use App\Filament\Resources\GameServerResource\Pages;
 use App\Filament\Resources\GameServerResource\RelationManagers;
+use App\Forms\Components\RichSelect;
 use App\Models\GameServer;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -21,25 +22,30 @@ class GameServerResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $types = collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->name]);
+        $types = collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]);
+        $types_descriptions = collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->getDescription()]);
 
         $protocols = collect(GameServerProtocol::cases())->mapWithKeys(fn($protocol) => [$protocol->value => $protocol->name]);
+        $protocols_descriptions = collect(GameServerProtocol::cases())->mapWithKeys(fn($protocol) => [$protocol->value => $protocol->getDescription()]);
 
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->translateLabel(),
-                Forms\Components\Select::make('type')
+                RichSelect::make('type')
                     ->options($types)
+                    ->descriptions($types_descriptions)
                     ->required()
                     ->translateLabel(),
-                Forms\Components\Select::make('protocol')
+                RichSelect::make('protocol')
                     ->options($protocols)
+                    ->descriptions($protocols_descriptions)
                     ->required()
                     ->translateLabel(),
-                Forms\Components\TextInput::make('config')
-                    ->required(),
+                Forms\Components\KeyValue::make('config')
+                    ->required()
+                    ->translateLabel(),
             ]);
     }
 
@@ -47,10 +53,16 @@ class GameServerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('protocol'),
-                Tables\Columns\TextColumn::make('config'),
+                Tables\Columns\TextColumn::make('name')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('type')
+                    ->enum(collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('protocol')
+                    ->enum(collect(GameServerProtocol::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('config')
+                    ->translateLabel(),
             ])
             ->filters([
                 //

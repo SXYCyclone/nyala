@@ -30,7 +30,7 @@ class GameServerPolicy
      */
     public function view(User $user, GameServer $gameServer)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class GameServerPolicy
      */
     public function update(User $user, GameServer $gameServer)
     {
-        //
+        return $user->canManageResource('game-servers');
     }
 
     /**
@@ -65,7 +65,7 @@ class GameServerPolicy
      */
     public function delete(User $user, GameServer $gameServer)
     {
-        //
+        return $user->canManageResource('game-servers');
     }
 
     /**
@@ -77,7 +77,7 @@ class GameServerPolicy
      */
     public function restore(User $user, GameServer $gameServer)
     {
-        //
+        return $user->canManageResource('game-servers');
     }
 
     /**
@@ -89,6 +89,6 @@ class GameServerPolicy
      */
     public function forceDelete(User $user, GameServer $gameServer)
     {
-        //
+        return $user->canManageResource('game-servers');
     }
 }
