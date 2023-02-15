@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.1",
         "andrewdwallo/filament-companies": "^1.1",
         "artificertech/filament-multi-context": "^2.1",
         "blackfire/php-sdk": "^1.33",
@@ -44,8 +44,10 @@
         },
         "files": [
             "app/Models/SpatieActivitylog/Activity.php",
-            "app/Models/WebhookServer/FilamentWebhookServer.php",
-            "app/Filament/Pages/WebhookServer/Webhooks.php"
+            "app/Models/WebhookServer/FilamentWebhookServer.php"
+        ],
+        "exclude-from-classmap": [
+            "vendor/marjose123/filament-webhook-server/src/Pages/Webhooks.php"
         ]
     },
     "autoload-dev": {
