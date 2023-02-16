@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('type');
             $table->string('protocol');
             $table->json('config');
+            $table->string('status')->default('offline');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Enums\GameServerProtocol;
+use App\Enums\GameServerStatus;
 use App\Enums\GameServerType;
 use App\Filament\Resources\GameServerResource\Pages;
 use App\Filament\Resources\GameServerResource\RelationManagers;
@@ -55,13 +56,16 @@ class GameServerResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->translateLabel(),
+                Tables\Columns\BadgeColumn::make('status')
+                    ->enum(collect(GameServerStatus::cases())->mapWithKeys(fn($status) => [$status->value => $status->getName()]))
+                    ->color(fn($state) => GameServerStatus::from($state)->getColor())
+                    ->icon(fn($state) => GameServerStatus::from($state)->getIcon())
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('type')
                     ->enum(collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
                     ->translateLabel(),
                 Tables\Columns\TextColumn::make('protocol')
                     ->enum(collect(GameServerProtocol::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
-                    ->translateLabel(),
-                Tables\Columns\TextColumn::make('config')
                     ->translateLabel(),
             ])
             ->filters([

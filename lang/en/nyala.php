@@ -38,4 +38,43 @@ return [
             'description' => 'Minecraft Ping can be used to query Minecraft servers for information such as the current map, number of players, and more.',
         ],
     ],
+
+    'game-server-status' => [
+        'offline' => [
+            'name' => 'Offline',
+            'description' => 'The game server is offline.',
+            'icon' => 'heroicon-o-x-circle',
+            'color' => 'danger',
+        ],
+        'online' => [
+            'name' => 'Online',
+            'description' => 'The game server is online.',
+            'icon' => 'heroicon-o-check-circle',
+            'color' => 'success',
+        ],
+        'starting' => [
+            'name' => 'Starting',
+            'description' => 'The game server is starting.',
+            'icon' => 'heroicon-o-clock',
+            'color' => 'warning',
+        ],
+        'stopping' => [
+            'name' => 'Stopping',
+            'description' => 'The game server is stopping.',
+            'icon' => 'heroicon-o-clock',
+            'color' => 'warning',
+        ],
+        'restarting' => [
+            'name' => 'Restarting',
+            'description' => 'The game server is restarting.',
+            'icon' => 'heroicon-o-clock',
+            'color' => 'warning',
+        ],
+        'updating' => [
+            'name' => 'Updating',
+            'description' => 'The game server is updating.',
+            'icon' => 'heroicon-o-clock',
+            'color' => 'warning',
+        ],
+    ],
 ];
