@@ -14,9 +14,7 @@ use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => view('welcome'));
 
 Route::middleware([
     'auth:sanctum',

@@ -28,15 +28,13 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => FilamentCompanies::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return DB::transaction(function () use ($input) {
-            return tap(User::create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-            ]), function (User $user) {
-                $this->createCompany($user);
-            });
-        });
+        return DB::transaction(fn() => tap(User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]), function (User $user) {
+            $this->createCompany($user);
+        }));
     }
 
     /**
@@ -46,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $user->ownedCompanies()->save(Company::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Company",
+            'name' => explode(' ', (string) $user->name, 2)[0]."'s Company",
             'personal_company' => true,
         ]));
     }

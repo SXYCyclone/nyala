@@ -23,8 +23,6 @@ class CreateUserFromProvider implements CreatesUserFromProvider
 
     /**
      * Create a new action instance.
-     *
-     * @param  \Wallo\FilamentCompanies\Contracts\CreatesConnectedAccounts  $createsConnectedAccounts
      */
     public function __construct(CreatesConnectedAccounts $createsConnectedAccounts)
     {
@@ -34,45 +32,40 @@ class CreateUserFromProvider implements CreatesUserFromProvider
     /**
      * Create a new user from a social provider user.
      *
-     * @param  string  $provider
-     * @param  \Laravel\Socialite\Contracts\User  $providerUser
      * @return \App\Models\User
      */
     public function create(string $provider, ProviderUserContract $providerUser)
     {
-        return DB::transaction(function () use ($provider, $providerUser) {
-            return tap(User::create([
-                'name' => $providerUser->getName(),
-                'email' => $providerUser->getEmail(),
-            ]), function (User $user) use ($provider, $providerUser) {
-                $user->markEmailAsVerified();
+        return DB::transaction(fn() => tap(User::create([
+            'name' => $providerUser->getName(),
+            'email' => $providerUser->getEmail(),
+        ]), function (User $user) use ($provider, $providerUser) {
+            $user->markEmailAsVerified();
 
-                if (Features::profilePhotos()) {
-                    if (Socialite::hasProviderAvatarsFeature() && FilamentCompanies::managesProfilePhotos() && $providerUser->getAvatar()) {
-                        $user->setProfilePhotoFromUrl($providerUser->getAvatar());
-                    }
+            if (Features::profilePhotos()) {
+                if (Socialite::hasProviderAvatarsFeature() && FilamentCompanies::managesProfilePhotos() && $providerUser->getAvatar()) {
+                    $user->setProfilePhotoFromUrl($providerUser->getAvatar());
                 }
+            }
 
-                $user->switchConnectedAccount(
-                    $this->createsConnectedAccounts->create($user, $provider, $providerUser)
-                );
+            $user->switchConnectedAccount(
+                $this->createsConnectedAccounts->create($user, $provider, $providerUser)
+            );
 
-                $this->createCompany($user);
-            });
-        });
+            $this->createCompany($user);
+        }));
     }
 
     /**
      * Create a personal company for the user.
      *
-     * @param  \App\Models\User  $user
      * @return void
      */
     protected function createCompany(User $user)
     {
         $user->ownedCompanies()->save(Company::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Company",
+            'name' => explode(' ', (string) $user->name, 2)[0]."'s Company",
             'personal_company' => true,
         ]));
     }
