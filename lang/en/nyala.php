@@ -17,6 +17,7 @@ return [
         'minecraft' => [
             'name' => 'Minecraft',
             'description' => 'Minecraft is a sandbox video game developed by Mojang. The game allows players to build with a variety of different blocks in a 3D procedurally generated world, requiring creativity from players. Other activities in the game include exploration, resource gathering, crafting, and combat.',
+            'icon' => 'fileicon-minecraft',
         ],
         'minecraft-bedrock' => [
             'name' => 'Minecraft Bedrock',

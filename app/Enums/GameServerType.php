@@ -16,4 +16,9 @@ enum GameServerType: string
     {
         return __("nyala.game-server-type.{$this->value}.description");
     }
+
+    public function getIcon(): string
+    {
+        return __("nyala.game-server-type.{$this->value}.icon");
+    }
 }

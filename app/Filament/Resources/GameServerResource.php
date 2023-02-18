@@ -54,19 +54,28 @@ class GameServerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->translateLabel(),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->enum(collect(GameServerStatus::cases())->mapWithKeys(fn($status) => [$status->value => $status->getName()]))
-                    ->color(fn($state) => GameServerStatus::from($state)->getColor())
-                    ->icon(fn($state) => GameServerStatus::from($state)->getIcon())
-                    ->translateLabel(),
-                Tables\Columns\TextColumn::make('type')
-                    ->enum(collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
-                    ->translateLabel(),
-                Tables\Columns\TextColumn::make('protocol')
-                    ->enum(collect(GameServerProtocol::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
-                    ->translateLabel(),
+                Tables\Columns\Layout\Stack::make([
+                    Tables\Columns\Layout\Split::make([
+                        Tables\Columns\IconColumn::make('type')
+                            ->options(collect(GameServerType::cases())->mapWithKeys(fn($type) => [$type->getIcon() => $type->value]))
+                            ->size('xl')
+                            ->translateLabel(),
+                        Tables\Columns\BadgeColumn::make('status')
+                            ->enum(collect(GameServerStatus::cases())->mapWithKeys(fn($status) => [$status->value => $status->getName()]))
+                            ->color(fn($state) => GameServerStatus::from($state)->getColor())
+                            ->icon(fn($state) => GameServerStatus::from($state)->getIcon())
+                            ->sortable()
+                            ->translateLabel(),
+                    ]),
+                    Tables\Columns\Layout\Split::make([
+                        Tables\Columns\TextColumn::make('name')
+                            ->searchable()
+                            ->translateLabel(),
+                        Tables\Columns\TextColumn::make('protocol')
+                            ->enum(collect(GameServerProtocol::cases())->mapWithKeys(fn($type) => [$type->value => $type->getName()]))
+                            ->translateLabel(),
+                    ]),
+                ]),
             ])
             ->filters([
                 //
@@ -76,6 +85,10 @@ class GameServerResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+            ])
+            ->contentGrid([
+                'md' => 2,
+                'lg' => 3,
             ]);
     }
 

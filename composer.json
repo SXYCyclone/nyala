@@ -12,6 +12,8 @@
         "andrewdwallo/filament-companies": "^1.1",
         "artificertech/filament-multi-context": "^2.1",
         "blackfire/php-sdk": "^1.33",
+        "codeat3/blade-file-icons": "^1.7",
+        "codeat3/blade-simple-icons": "^1.64",
         "filament/filament": "^2.16",
         "filament/spatie-laravel-settings-plugin": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
