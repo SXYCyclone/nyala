@@ -20,9 +20,6 @@ class InitRolesForNewCompany
 
     /**
      * Handle the event.
-     *
-     * @param CompanyCreated $event
-     * @return void
      */
     public function handle(CompanyCreated $event): void
     {

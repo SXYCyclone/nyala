@@ -90,13 +90,14 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
      *
      * @return string
      */
-    public function getProfilePhotoUrlAttribute()
+    protected function profilePhotoUrl(): \Illuminate\Database\Eloquent\Casts\Attribute
     {
-        if (filter_var($this->profile_photo_path, FILTER_VALIDATE_URL)) {
-            return $this->profile_photo_path;
-        }
-
-        return $this->getPhotoUrl();
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(get: function () {
+            if (filter_var($this->profile_photo_path, FILTER_VALIDATE_URL)) {
+                return $this->profile_photo_path;
+            }
+            return $this->getPhotoUrl();
+        });
     }
 
     public function hasCurrentCompanyPermission(string $permission): bool
@@ -109,9 +110,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
         return $this->hasCompanyRole($this->currentCompany, $role);
     }
 
-    public function getCurrentCompanyRoleAttribute(): ?Role
+    protected function currentCompanyRole(): \Illuminate\Database\Eloquent\Casts\Attribute
     {
-        return $this->companyRole($this->currentCompany);
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(get: fn() => $this->companyRole($this->currentCompany));
     }
 
     public function canManageResource(string $resource, $company = null): bool
