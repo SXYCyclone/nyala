@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a29ab070b24f2e7d64cca4aef7fefa3",
+    "content-hash": "87cfab2cf1a3600701bccda4532b424d",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -9765,21 +9765,21 @@
         },
         {
             "name": "z3d0x/filament-logger",
-            "version": "v0.4.2",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Z3d0X/filament-logger.git",
-                "reference": "ddc6691c0ab74c08bb956d7c9c1744a540488e17"
+                "reference": "25a75ab4c9aa8c34033eeb61c6d5b2811147cce8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Z3d0X/filament-logger/zipball/ddc6691c0ab74c08bb956d7c9c1744a540488e17",
-                "reference": "ddc6691c0ab74c08bb956d7c9c1744a540488e17",
+                "url": "https://api.github.com/repos/Z3d0X/filament-logger/zipball/25a75ab4c9aa8c34033eeb61c6d5b2811147cce8",
+                "reference": "25a75ab4c9aa8c34033eeb61c6d5b2811147cce8",
                 "shasum": ""
             },
             "require": {
                 "filament/filament": "^2.11",
-                "illuminate/contracts": "^8.0 | ^9.0",
+                "illuminate/contracts": "^8.0 | ^9.0 | ^10.0",
                 "php": "^8.0 | ^8.1",
                 "spatie/laravel-activitylog": "^4.5",
                 "spatie/laravel-package-tools": "^1.13.5"
@@ -9833,9 +9833,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Z3d0X/filament-logger/issues",
-                "source": "https://github.com/Z3d0X/filament-logger/tree/v0.4.2"
+                "source": "https://github.com/Z3d0X/filament-logger/tree/v0.5.0"
             },
-            "time": "2022-12-22T09:36:19+00:00"
+            "time": "2023-02-15T17:10:55+00:00"
         }
     ],
     "packages-dev": [
