@@ -701,21 +701,21 @@
         },
         {
             "name": "artificertech/filament-multi-context",
-            "version": "v2.1.0",
+            "version": "V2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artificertech/filament-multi-context.git",
-                "reference": "74b0baf9c8fe68f2d3655782e2d7a2f20e219a34"
+                "reference": "4c4c8ec6c2e873d73940e478fb70644cb2e7cf2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artificertech/filament-multi-context/zipball/74b0baf9c8fe68f2d3655782e2d7a2f20e219a34",
-                "reference": "74b0baf9c8fe68f2d3655782e2d7a2f20e219a34",
+                "url": "https://api.github.com/repos/artificertech/filament-multi-context/zipball/4c4c8ec6c2e873d73940e478fb70644cb2e7cf2f",
+                "reference": "4c4c8ec6c2e873d73940e478fb70644cb2e7cf2f",
                 "shasum": ""
             },
             "require": {
-                "filament/filament": "^2.15.16|^2.16",
-                "illuminate/contracts": "^8.6|^9.0",
+                "filament/filament": "^2.15.16",
+                "illuminate/contracts": "^8.6|^9.0|^10.0",
                 "php": "^8.0",
                 "spatie/laravel-package-tools": "^1.9.2"
             },
@@ -723,7 +723,7 @@
                 "laravel/pint": "^1.1",
                 "nunomaduro/collision": "^6.0",
                 "nunomaduro/larastan": "^2.0.1",
-                "orchestra/testbench": "^7.0",
+                "orchestra/testbench": "^7.0|^8.0",
                 "pestphp/pest": "^1.21",
                 "pestphp/pest-plugin-laravel": "^1.1",
                 "pestphp/pest-plugin-livewire": "^1.0",
@@ -767,9 +767,9 @@
             ],
             "support": {
                 "issues": "https://github.com/artificertech/filament-multi-context/issues",
-                "source": "https://github.com/artificertech/filament-multi-context/tree/v2.1.0"
+                "source": "https://github.com/artificertech/filament-multi-context/tree/V2.1.2"
             },
-            "time": "2022-11-03T00:39:32+00:00"
+            "time": "2023-05-15T00:09:34+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -6748,16 +6748,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.14.1",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+                "reference": "efab1844b8826443135201c4443690f032c3d533"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/efab1844b8826443135201c4443690f032c3d533",
+                "reference": "efab1844b8826443135201c4443690f032c3d533",
                 "shasum": ""
             },
             "require": {
@@ -6796,7 +6796,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.15.0"
             },
             "funding": [
                 {
@@ -6804,7 +6804,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-27T15:33:45+00:00"
+            "time": "2023-04-27T08:09:01+00:00"
         },
         {
             "name": "spatie/laravel-personal-data-export",
