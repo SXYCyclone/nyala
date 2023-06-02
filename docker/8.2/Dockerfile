@@ -1,4 +1,4 @@
-FROM ubuntu:rolling
+FROM ubuntu:23.04
 
 LABEL maintainer="Taylor Otwell"
 
