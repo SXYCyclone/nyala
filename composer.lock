@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a29ab070b24f2e7d64cca4aef7fefa3",
+    "content-hash": "3bb1b0f1f23e85f1a6ff10156484495e",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -6134,37 +6134,37 @@
         },
         {
             "name": "ryangjchandler/filament-navigation",
-            "version": "v0.4.2",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ryangjchandler/filament-navigation.git",
-                "reference": "1e5697c3fe438479dfc3ce2e66dd5a89ca0501ef"
+                "reference": "51d7f4bd1b54f57b1f4f658d54c479aeddf03336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ryangjchandler/filament-navigation/zipball/1e5697c3fe438479dfc3ce2e66dd5a89ca0501ef",
-                "reference": "1e5697c3fe438479dfc3ce2e66dd5a89ca0501ef",
+                "url": "https://api.github.com/repos/ryangjchandler/filament-navigation/zipball/51d7f4bd1b54f57b1f4f658d54c479aeddf03336",
+                "reference": "51d7f4bd1b54f57b1f4f658d54c479aeddf03336",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^3.3",
-                "filament/filament": "^2.13",
-                "illuminate/contracts": "^9.0",
+                "doctrine/dbal": "^3.5.1",
+                "filament/filament": "^2.17",
+                "illuminate/contracts": "^9.0|^10.0",
                 "php": "^8.1",
                 "spatie/laravel-package-tools": "^1.9.2"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
-                "nunomaduro/collision": "^6.0",
+                "nunomaduro/collision": "^6.0|^7.0",
                 "nunomaduro/larastan": "^2.0.1",
-                "orchestra/canvas": "^7.1",
-                "orchestra/testbench": "^7.0",
+                "orchestra/canvas": "^7.1|^8.0",
+                "orchestra/testbench": "^7.0|^8.0",
                 "pestphp/pest": "^1.21",
                 "pestphp/pest-plugin-laravel": "^1.1",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-phpunit": "^1.0",
-                "phpunit/phpunit": "^9.5",
+                "phpunit/phpunit": "^9.5|^10.0",
                 "spatie/laravel-ray": "^1.26"
             },
             "type": "library",
@@ -6204,7 +6204,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ryangjchandler/filament-navigation/issues",
-                "source": "https://github.com/ryangjchandler/filament-navigation/tree/v0.4.2"
+                "source": "https://github.com/ryangjchandler/filament-navigation/tree/v0.5.0"
             },
             "funding": [
                 {
@@ -6212,7 +6212,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-08T09:03:22+00:00"
+            "time": "2023-02-15T21:40:59+00:00"
         },
         {
             "name": "shuvroroy/filament-spatie-laravel-health",
@@ -6748,16 +6748,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.14.1",
+            "version": "1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/bab62023a4745a61170ad5424184533685e73c2d",
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d",
                 "shasum": ""
             },
             "require": {
@@ -6796,7 +6796,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.2"
             },
             "funding": [
                 {
@@ -6804,7 +6804,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-27T15:33:45+00:00"
+            "time": "2023-03-14T16:41:21+00:00"
         },
         {
             "name": "spatie/laravel-personal-data-export",
